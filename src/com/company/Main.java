@@ -7,11 +7,13 @@ public class Main {
 
     public static void main(String[] args) {
         ArrayList<Image> images = new ArrayList<>();
-        for (int k = 0; k < 2; k++) {
+        String path = "";
+        while (!path.equals("q")){
             Scanner in = new Scanner(System.in);
-            System.out.println("Enter a path for file");
-            String path = in.next();
-
+            System.out.println("Enter a path for file (enter q for exit)");
+            path = in.next();
+            if (path.equals("q"))
+                break;
             try {
                 Image im = new Image(path);
                 System.out.println(im);
@@ -22,7 +24,9 @@ public class Main {
         }
 
         images.sort(Image::compare);
-        System.out.print(getDistance(images, images.get(0)));
+        if (images.size() > 0){
+            System.out.print(getDistance(images, images.get(0)));  // demo of the getDistance method usage
+        }
     }
 
     public static int getDistance(ArrayList<Image> images, Image im){
